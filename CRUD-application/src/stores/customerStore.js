@@ -12,7 +12,34 @@ export const useCustomerStore = defineStore('customers', () => {
       state: 'New York',
       status: 'Active', // or Inactive
       about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ut libero ultricies ultricies. Nullam nec purus ut libero ultricies ultricies.'
-    }
+    },
+    {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john.doe@mailer.com',
+      phone: '123-456-7890',
+      state: 'New York',
+      status: 'Active', // or Inactive
+      about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ut libero ultricies ultricies. Nullam nec purus ut libero ultricies ultricies.'
+    },
+    {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john.doe@mailer.com',
+      phone: '123-456-7890',
+      state: 'New York',
+      status: 'Active', // or Inactive
+      about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ut libero ultricies ultricies. Nullam nec purus ut libero ultricies ultricies.'
+    },
+    {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john.doe@mailer.com',
+      phone: '123-456-7890',
+      state: 'New York',
+      status: 'Active', // or Inactive
+      about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ut libero ultricies ultricies. Nullam nec purus ut libero ultricies ultricies.'
+    },
   ]);
 
   // Make the data searchable by email, both name, phone, state, and status.

@@ -3,3 +3,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .doubleInput {
+    @apply flex flex-col sm:flex-row gap-5 mt-5;
+  }
+
+  .inputHolder {
+    @apply relative flex flex-col gap-2 w-full sm:w-1/2;
+  }
+
+  label {
+    @apply text-sm text-gray-600;
+  }
+
+  input, select, textarea {
+    @apply border border-gray-300 focus:border-mainColor outline-none text-sm rounded px-3 py-2
+  }
+}

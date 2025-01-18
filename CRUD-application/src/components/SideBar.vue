@@ -5,7 +5,7 @@ import IconDashboard from './IconDashboard.vue'
 </script>
 
 <template>
-  <div class="bg-white fixed top-0 left-0 w-64 h-full shadow-lg p-5">
+  <div class="bg-white hidden lg:block fixed top-0 left-0 w-64 h-full shadow-lg p-5">
     <div class="mb-5">
       <TheLogo class=" w-32" alt="logo" />
     </div>
@@ -19,7 +19,7 @@ import IconDashboard from './IconDashboard.vue'
           </a>
         </li>
         <li>
-          <a class="flex items-center hover:text-mainColor w-fit" href="#">
+          <a class="flex items-center text-mainColor w-fit" href="#">
             <IconCustomer class="w-5 h-5 mr-2 stroke-mainColor" />
             <span>Customers</span>
           </a>

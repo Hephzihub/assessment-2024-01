@@ -3,44 +3,7 @@ import { defineStore, acceptHMRUpdate } from 'pinia'
 export const useCustomerStore = defineStore('customers', () => {
 
   // Define the customer data structure.
-  const customers = ref([
-    {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@mailer.com',
-      phone: '123-456-7890',
-      state: 'New York',
-      status: true,
-      about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ut libero ultricies ultricies. Nullam nec purus ut libero ultricies ultricies.'
-    },
-    {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@mailer.com',
-      phone: '123-456-7890',
-      state: 'New York',
-      status: true,
-      about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ut libero ultricies ultricies. Nullam nec purus ut libero ultricies ultricies.'
-    },
-    {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@mailer.com',
-      phone: '123-456-7890',
-      state: 'New York',
-      status: true,
-      about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ut libero ultricies ultricies. Nullam nec purus ut libero ultricies ultricies.'
-    },
-    {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@mailer.com',
-      phone: '123-456-7890',
-      state: 'New York',
-      status: true,
-      about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ut libero ultricies ultricies. Nullam nec purus ut libero ultricies ultricies.'
-    },
-  ]);
+  const customers = ref([]);
 
   // Make the data searchable by email, both name, phone, state, and status(if search query is active return true).
   const query = ref('');

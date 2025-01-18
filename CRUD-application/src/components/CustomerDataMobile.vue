@@ -12,42 +12,55 @@ const props = defineProps({
   index: Number,
 });
 
-const { open: openEdit, close: closeEdit } = useModal({
-  component: CreateCustomer,
-  attrs: {
-    edit: true,
-    index: props.index,
-    customer: props.data,
-    onConfirm() {
-      closeEdit();
+function openEdit() {
+  const { open, close: closeEdit } = useModal({
+    component: CreateCustomer,
+    attrs: {
+      edit: true,
+      index: props.index,
+      customer: props.data,
+      onConfirm() {
+        closeEdit();
+      },
     },
-  },
-});
+  });
 
-const { open: openDelete, close: closeDelete } = useModal({
-  component: ConfirmDelete,
-  attrs: {
-    index: props.index,
-    name: `${props.data.firstName} ${props.data.lastName}'s`,
-    onConfirm() {
-      closeDelete();
-    },
-  },
-});
+  open();
+}
 
-const { open: openView, close: closeView } = useModal({
-  component: ViewCustomer,
-  attrs: {
-    customerInfo: props.data,
-    onConfirm() {
-      closeView();
+function openDelete() {
+  const { open, close: closeDelete } = useModal({
+    component: ConfirmDelete,
+    attrs: {
+      index: props.index,
+      name: `${props.data.firstName} ${props.data.lastName}'s`,
+      onConfirm() {
+        closeDelete();
+      },
     },
-  },
-});
+  });
+  open();
+}
+
+function openView() {
+  const { open, close: closeView } = useModal({
+    component: ViewCustomer,
+    attrs: {
+      customerInfo: props.data,
+      onConfirm() {
+        closeView();
+      },
+    },
+  });
+
+  open();
+}
 </script>
 
 <template>
-  <div class="max-w-80 min-w-64 p-5 bg-white shadow-lg rounded-lg flex-1 grow-1 basis-auto">
+  <div
+    class="max-w-80 min-w-64 p-5 bg-white shadow-lg rounded-lg flex-1 grow-1 basis-auto"
+  >
     <div class="flex justify-between items-center gap-5 mb-5">
       <h4 class="font-medium text-xl">
         {{ `${data.firstName} ${data.lastName}` }}
@@ -83,7 +96,7 @@ const { open: openView, close: closeView } = useModal({
 
       <div>
         <p class="font-medium">Status</p>
-        <p>{{ data.status }}</p>
+        <p>{{ data.status ? "Active" : "Inactive" }}</p>
       </div>
 
       <div>

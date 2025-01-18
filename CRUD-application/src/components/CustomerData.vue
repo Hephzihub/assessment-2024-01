@@ -12,38 +12,49 @@ const props = defineProps({
   index: Number,
 });
 
-const { open: openEdit, close: closeEdit} = useModal({
-  component: CreateCustomer,
-  attrs: {
-    edit: true,
-    index: props.index,
-    customer: props.customerData,
-    onConfirm() {
-      closeEdit();
+function openEdit() {
+  const { open, close: closeEdit } = useModal({
+    component: CreateCustomer,
+    attrs: {
+      edit: true,
+      index: props.index,
+      customer: props.data,
+      onConfirm() {
+        closeEdit();
+      },
     },
-  }
-});
+  });
 
-const { open: openDelete, close: closeDelete } = useModal({
-  component: ConfirmDelete,
-  attrs: {
-    index: props.index,
-    name: `${props.customerData.firstName} ${props.customerData.lastName}'s`,
-    onConfirm() {
-      closeDelete();
-    },
-  },
-});
+  open();
+}
 
-const { open: openView, close:closeView } = useModal({
-  component: ViewCustomer,
-  attrs: {
-    customerInfo: props.customerData,
-    onConfirm() {
-      closeView();
+function openDelete() {
+  const { open, close: closeDelete } = useModal({
+    component: ConfirmDelete,
+    attrs: {
+      index: props.index,
+      name: `${props.data.firstName} ${props.data.lastName}'s`,
+      onConfirm() {
+        closeDelete();
+      },
     },
-  },
-});
+  });
+  open();
+}
+
+function openView() {
+  const { open, close: closeView } = useModal({
+    component: ViewCustomer,
+    attrs: {
+      customerInfo: props.data,
+      onConfirm() {
+        closeView();
+      },
+    },
+  });
+
+  open();
+}
 </script>
 <template>
   <tr class="*:font-light *:border *:px-2 *:py-1 border-gray-500">  
@@ -79,7 +90,7 @@ const { open: openView, close:closeView } = useModal({
     </td>
     <td class="hidden lg:table-cell">
       <p>
-        {{ customerData.status }}
+        {{ customerData.status ? "Active" : "Inactive" }}
       </p>
     </td>
     <td>

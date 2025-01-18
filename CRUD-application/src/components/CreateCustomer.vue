@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, watch, computed, onMounted } from "vue";
 import { useCustomerStore } from "@/stores/customerStore";
 import { VueFinalModal } from "vue-final-modal";
 import IconBack from "./IconBack.vue";
 import states from "../assets/data/states.json";
 import { VueEditor } from "vue3-editor";
+import { validateCustomer } from "../plugins/validation";
 
 const { addCustomer, updateCustomer } = useCustomerStore();
 
@@ -22,28 +23,51 @@ const props = defineProps({
 
 const emits = defineEmits(["confirm"]);
 
-const newCustomer = ref(
-  props.edit && props.customer
-    ? props.customer
-    : {
-        firstName: null,
-        lastName: null,
-        email: null,
-        phone: null,
-        state: null,
-        status: null, // Active or Inactive
-        about: ` <p>I'm running Tiptap with Vue.js. 🎉</p>`,
-      }
-);
+const newCustomer = reactive({
+  firstName: null,
+  lastName: null,
+  email: null,
+  phone: null,
+  state: null,
+  status: false, // Active or Inactive
+  about: null,
+});
+
+const errors = ref(validateCustomer(newCustomer));
+
+watch(newCustomer, (value, oldval) => {
+  errors.value = validateCustomer(value);
+  console.log(errors.value);
+});
+
+const disableBtn = computed(() => {
+  // check if object is empty
+
+  return Object.keys(errors.value).length > 0;
+});
 
 const submitData = () => {
   if (props.edit) {
-    updateCustomer(props.index, newCustomer.value);
+    updateCustomer(props.index, newCustomer);
   } else {
-    addCustomer(newCustomer.value);
+    addCustomer(newCustomer);
   }
   emits("confirm");
 };
+
+onMounted(() => {
+  if (props.edit) {
+    newCustomer.firstName = props.customer.firstName;
+    newCustomer.lastName = props.customer.lastName;
+    newCustomer.email = props.customer.email;
+    newCustomer.phone = props.customer.phone;
+    newCustomer.state = props.customer.state;
+    newCustomer.status = props.customer.status;
+    newCustomer.about = props.customer.about;
+  }
+
+  errors.value = validateCustomer(newCustomer);
+});
 </script>
 
 <template>
@@ -127,11 +151,16 @@ const submitData = () => {
               </select>
             </div>
             <div class="inputHolder">
-              <label for="status">Status</label>
-              <select id="status" v-model="newCustomer.status" class="">
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-              </select>
+              <label>Status</label>
+              <div class="flex items-center gap-2 h-full">
+                <input
+                  type="checkbox"
+                  id="active"
+                  value="Active"
+                  v-model="newCustomer.status"
+                />
+                <label for="active">Check if User is Active</label>
+              </div>
             </div>
           </div>
 
@@ -148,6 +177,7 @@ const submitData = () => {
           <button
             type="submit"
             class="bg-mainColor disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-1/2 px-3 py-2 rounded text-sm text-white text-center"
+            :disabled="disableBtn"
           >
             {{ edit ? "Update" : "Create" }}
           </button>
@@ -175,12 +205,12 @@ const submitData = () => {
 }
 
 .optionGrp::-webkit-scrollbar-thumb {
-  background-color: hsla(240,1%,84%,0);
+  background-color: hsla(240, 1%, 84%, 0);
   border-radius: 6px;
 }
 
 .optionGrp::-webkit-scrollbar-track {
-  background-color: hsla(0,0%,94%,0);
+  background-color: hsla(0, 0%, 94%, 0);
   border-radius: 6px;
 }
 </style>

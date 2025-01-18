@@ -20,4 +20,8 @@
   input, select, textarea {
     @apply border border-gray-300 focus:border-mainColor outline-none text-sm rounded px-3 py-2
   }
+
+  button {
+    @apply outline-none
+  }
 }

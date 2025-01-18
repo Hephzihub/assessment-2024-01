@@ -47,7 +47,7 @@ const emits = defineEmits(["confirm"]);
 
       <div>
         <p class="font-medium">Status</p>
-        <p>{{ customerInfo.status }}</p>
+        <p>{{ customerInfo.status ? 'Active' : 'Inactive' }}</p>
       </div>
 
       <div>

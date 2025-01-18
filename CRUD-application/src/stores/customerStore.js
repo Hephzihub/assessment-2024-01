@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore, acceptHMRUpdate } from 'pinia'
+import { toast } from "vue3-toastify";
 export const useCustomerStore = defineStore('customers', () => {
 
   // Define the customer data structure.
@@ -23,17 +24,26 @@ export const useCustomerStore = defineStore('customers', () => {
 
   // update a customer
   function updateCustomer(index, customer) {
-    customers.value[index] = customer
+    customers.value[index] = customer;
+    toast.success("User Updated Successfully", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
 
   // add a new customer
   function addCustomer(customer) {
-    customers.value.push(customer)
+    customers.value.push(customer);
+    toast.success("User Added Successfully", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
 
   // delete a customer
   function deleteCustomer(index) {
     customers.value.splice(index, 1)
+    toast.success("User Deleted Successfully", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
 
   return { query, filteredCustomers, updateCustomer, addCustomer, deleteCustomer }

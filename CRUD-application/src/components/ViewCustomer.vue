@@ -1,6 +1,7 @@
 <script setup>
 import { VueFinalModal } from "vue-final-modal";
 import IconClose from "./IconClose.vue";
+import StatusComponent from "./StatusComponent.vue";
 
 const props = defineProps({
   customerInfo: Object,
@@ -47,7 +48,7 @@ const emits = defineEmits(["confirm"]);
 
       <div>
         <p class="font-medium">Status</p>
-        <p>{{ customerInfo.status ? 'Active' : 'Inactive' }}</p>
+        <StatusComponent :status="customerInfo.status" />
       </div>
 
       <div>

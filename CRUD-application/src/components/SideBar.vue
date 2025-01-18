@@ -5,7 +5,7 @@ import IconDashboard from './IconDashboard.vue'
 </script>
 
 <template>
-  <div class="bg-white hidden lg:block fixed top-0 left-0 w-64 h-full shadow-lg p-5">
+  <div class="bg-white -left-72 duration-150 fixed top-0 lg:left-0 w-64 h-full shadow-lg p-5">
     <div class="mb-5">
       <TheLogo class=" w-32" alt="logo" />
     </div>

@@ -16,7 +16,7 @@ const emits = defineEmits(["confirm"]);
 <template>
     <VueFinalModal
     class="flex h-full w-full justify-center items-end sm:items-center"
-    content-class="relative bg-white p-5 rounded-t-2xl sm:rounded-2xl w-full border max-w-xs min-h-[200px]"
+    content-class="relative bg-white p-5 rounded-t-2xl sm:rounded-2xl w-full border sm:max-w-xs min-h-[200px]"
     overlay-class="bg-background/80 backdrop-blur-sm"
     :overlayTransition="'vfm-fade'"
     :contentTransition="'vfm-slide-down'"
@@ -39,7 +39,7 @@ const emits = defineEmits(["confirm"]);
           Yes
         </button>
         <button
-          class="bg-transparent shadow-md  px-3 py-2 rounded"
+          class="bg-transparent border px-3 py-2 rounded"
           @click="emits('confirm')"
         >
           No

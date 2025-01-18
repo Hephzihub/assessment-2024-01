@@ -6,6 +6,7 @@ import { useModal } from "vue-final-modal";
 import CreateCustomer from "./CreateCustomer.vue";
 import ConfirmDelete from "./ConfirmDelete.vue";
 import ViewCustomer from "./ViewCustomer.vue";
+import StatusComponent from "./StatusComponent.vue";
 
 const props = defineProps({
   data: Object,
@@ -96,7 +97,7 @@ function openView() {
 
       <div>
         <p class="font-medium">Status</p>
-        <p>{{ data.status ? "Active" : "Inactive" }}</p>
+        <StatusComponent :status="data.status" />
       </div>
 
       <div>

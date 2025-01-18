@@ -25,7 +25,7 @@ const { open, close} = useModal({
     <div class="w-full max-w-64">
       <button
         class="bg-mainColor w-full text-white px-3 py-2 rounded flex justify-center items-center"
-        @click="open"
+        @click="open()"
       >
         <IconAddBtnVue class="w-5 h-5 mr-2" />
         <span class="text-sm">Create Customer</span>

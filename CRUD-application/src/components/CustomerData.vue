@@ -6,6 +6,7 @@ import { useModal } from "vue-final-modal";
 import CreateCustomer from "./CreateCustomer.vue";
 import ConfirmDelete from "./ConfirmDelete.vue";
 import ViewCustomer from "./ViewCustomer.vue";
+import StatusComponent from "./StatusComponent.vue";
 
 const props = defineProps({
   customerData: Object,
@@ -18,7 +19,7 @@ function openEdit() {
     attrs: {
       edit: true,
       index: props.index,
-      customer: props.data,
+      customer: props.customerData,
       onConfirm() {
         closeEdit();
       },
@@ -33,7 +34,7 @@ function openDelete() {
     component: ConfirmDelete,
     attrs: {
       index: props.index,
-      name: `${props.data.firstName} ${props.data.lastName}'s`,
+      name: `${props.customerData.firstName} ${props.customerData.lastName}'s`,
       onConfirm() {
         closeDelete();
       },
@@ -46,7 +47,7 @@ function openView() {
   const { open, close: closeView } = useModal({
     component: ViewCustomer,
     attrs: {
-      customerInfo: props.data,
+      customerInfo: props.customerData,
       onConfirm() {
         closeView();
       },
@@ -89,9 +90,7 @@ function openView() {
       </p>
     </td>
     <td class="hidden lg:table-cell">
-      <p>
-        {{ customerData.status ? "Active" : "Inactive" }}
-      </p>
+      <StatusComponent :status="customerData.status" />
     </td>
     <td>
       <div class="flex justify-around">

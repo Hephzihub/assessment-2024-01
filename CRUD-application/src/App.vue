@@ -12,14 +12,14 @@ const customerStore = useCustomerStore();
 </script>
 
 <template>
+  <ModalsContainer />
   <div>
-    <ModalsContainer />
     <SideBar />
 
     <HeaderView class="lg:hidden" />
-    <main class="lg:ml-64 py-7 px-5">
+    <main class="lg:ml-64 duration-150 py-7 px-5">
       <h1 class="text-3xl font-medium mb-5">Customers</h1>
-      <div class="bg-white shadow-lg p-5 rounded-lg">
+      <div class="bg-white shadow-lg p-5 rounded-lg pb-10">
         <SearchAdd />
 
         <div v-if="customerStore.filteredCustomers.length">
@@ -28,7 +28,17 @@ const customerStore = useCustomerStore();
           <CustomerListMobile class="lg:hidden" />
         </div>
 
-        <NotFound v-else /> 
+        <NotFound v-else />
+      </div>
+
+      <div class="relative bottom-0 w-full p-5">
+        <!-- Design inspiration link -->
+        <a
+          href="https://dribbble.com/shots/21317872-CRUD-Application"
+          target="_blank"
+          class="text-mainColor italic text-center block text-sm"
+          >Design inspiration by Majid Valizadeh</a
+        >
       </div>
     </main>
   </div>

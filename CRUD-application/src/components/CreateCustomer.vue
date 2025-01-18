@@ -37,7 +37,7 @@ const errors = ref(validateCustomer(newCustomer));
 
 watch(newCustomer, (value, oldval) => {
   errors.value = validateCustomer(value);
-  console.log(errors.value);
+  // console.log(errors.value);
 });
 
 const disableBtn = computed(() => {
